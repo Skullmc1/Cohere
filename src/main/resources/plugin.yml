@@ -1,0 +1,8 @@
+name: Cohere
+version: '0.1'
+main: com.qclid.cohere.Cohere
+api-version: '1.21'
+prefix: Cohere
+authors: [ Qclid ]
+description: Cohere links players together so their XP, effects, and custom abilities synchronize and strengthen whenever they team up.
+website: www.qclid.space
