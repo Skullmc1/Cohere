@@ -1,7 +1,8 @@
 package com.qclid.cohere.Utility;
 
 import com.qclid.cohere.Modules.CoherenceManager;
-import com.qclid.cohere.Modules.PotionShare;
+import com.qclid.cohere.Shares.PotionShare;
+
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;

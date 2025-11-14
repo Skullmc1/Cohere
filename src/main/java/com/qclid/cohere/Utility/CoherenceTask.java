@@ -1,7 +1,8 @@
 package com.qclid.cohere.Utility;
 
 import com.qclid.cohere.Modules.CoherenceManager;
-import com.qclid.cohere.Modules.PotionShare;
+import com.qclid.cohere.Shares.PotionShare;
+
 import org.bukkit.scheduler.BukkitRunnable;
 
 public class CoherenceTask extends BukkitRunnable {

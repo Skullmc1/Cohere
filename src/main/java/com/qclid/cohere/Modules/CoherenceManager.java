@@ -54,7 +54,6 @@ public class CoherenceManager {
             );
             Set<Player> newNearby = newCoherenceMap.get(player);
 
-            // Find newly entered players
             for (Player nearbyPlayer : newNearby) {
                 if (!oldNearby.contains(nearbyPlayer)) {
                     Set<Player> pair = new HashSet<>();
@@ -77,7 +76,6 @@ public class CoherenceManager {
                 }
             }
 
-            // Find players who left
             for (Player nearbyPlayer : oldNearby) {
                 if (!newNearby.contains(nearbyPlayer)) {
                     Set<Player> pair = new HashSet<>();

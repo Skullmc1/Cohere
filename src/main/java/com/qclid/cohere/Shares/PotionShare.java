@@ -1,4 +1,4 @@
-package com.qclid.cohere.Modules;
+package com.qclid.cohere.Shares;
 
 import com.qclid.cohere.Cohere;
 import java.util.HashMap;
@@ -12,8 +12,6 @@ import org.bukkit.potion.PotionEffectType;
 public class PotionShare {
 
     private final Cohere plugin;
-    // Tracks which player received which effect from whom
-    // Recipient -> {EffectType -> Giver}
     private final Map<
         Player,
         Map<PotionEffectType, Player>
@@ -49,7 +47,6 @@ public class PotionShare {
             if (coherentPlayers.isEmpty()) continue;
 
             for (PotionEffect effectA : playerA.getActivePotionEffects()) {
-                // Skip if the effect on playerA is a shared one, to prevent loops
                 if (isEffectShared(playerA, effectA.getType())) continue;
 
                 for (Player playerB : coherentPlayers) {
@@ -57,7 +54,6 @@ public class PotionShare {
                         effectA.getType()
                     );
 
-                    // Share if playerB doesn't have the effect, or playerA's is stronger
                     if (
                         effectB == null ||
                         effectA.getAmplifier() > effectB.getAmplifier()
@@ -67,7 +63,6 @@ public class PotionShare {
                             effectA.getAmplifier() - levelDecrease
                         );
 
-                        // Apply the shared effect for 5 seconds (100 ticks)
                         PotionEffect sharedEffect = new PotionEffect(
                             effectA.getType(),
                             100,
@@ -95,7 +90,6 @@ public class PotionShare {
             }
         }
 
-        // Clean up effects that are no longer shared
         sharedEffectsTracker.forEach((recipient, effects) -> {
             effects.forEach((type, giver) -> {
                 if (
@@ -127,7 +121,6 @@ public class PotionShare {
     }
 
     public void cleanUpPlayer(Player player) {
-        // Remove effects that were GIVEN BY the quitting player
         sharedEffectsTracker.forEach((recipient, effects) -> {
             Set<PotionEffectType> toRemove = new HashSet<>();
             effects.forEach((type, giver) -> {
@@ -139,7 +132,6 @@ public class PotionShare {
             toRemove.forEach(effects::remove);
         });
 
-        // Remove effects that were RECEIVED BY the quitting player
         sharedEffectsTracker.remove(player);
     }
 }

@@ -46,7 +46,7 @@ public class XPShare implements Listener {
             int sharedAmount = amount / totalPlayers;
             int remainder = amount % totalPlayers;
 
-            event.setAmount(sharedAmount + remainder); // Original player gets the remainder
+            event.setAmount(sharedAmount + remainder);
 
             for (Player nearbyPlayer : nearbyPlayers) {
                 nearbyPlayer.giveExp(sharedAmount);
