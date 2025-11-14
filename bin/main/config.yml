@@ -1,9 +1,13 @@
 general-settings:
+  # The range of coherence for players to be considered nearby.
   min-distance: 10
+  # Worlds where the plugin is disabled.
   disabled-worlds:
     - "lobby"
-  dev-logs: true # Master toggle for all dev logs
+  # Do you want to enable debug logs? default: false
+  dev-logs: false
 
+# Message customization, Supports Minimessage.
 message-formats:
   help-message: "<gradient:#5e4fa2:#f79459>Cohere Plugin Help</gradient>\n/cohere help - Shows this message."
   reload-message: "<green>Cohere plugin reloaded successfully.</green>"
@@ -20,4 +24,5 @@ coherences:
     shared-percentage: 50
   potionshare:
     enabled: true
+    # Levels to decrease when sharing potions.
     level-decrease: 1
