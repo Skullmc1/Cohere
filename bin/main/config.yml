@@ -1,0 +1,23 @@
+general-settings:
+  min-distance: 10
+  disabled-worlds:
+    - "lobby"
+  dev-logs: true # Master toggle for all dev logs
+
+message-formats:
+  help-message: "<gradient:#5e4fa2:#f79459>Cohere Plugin Help</gradient>\n/cohere help - Shows this message."
+  reload-message: "<green>Cohere plugin reloaded successfully.</green>"
+
+coherences:
+  xpshare:
+    enabled: true
+    # Type of sharing: 'add' or 'subtract'
+    # 'add': Clones a percentage of the XP to nearby players without reducing the original amount.
+    # 'subtract': Divides the XP evenly among nearby players.
+    type: "add"
+    # Percentage of XP to be shared with nearby players (only for 'add' type).
+    # For example, 50 means 50% of the original XP is given to each nearby player.
+    shared-percentage: 50
+  potionshare:
+    enabled: true
+    level-decrease: 1
