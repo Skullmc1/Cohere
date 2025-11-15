@@ -9,7 +9,7 @@ general-settings:
 
 # Message customization, Supports Minimessage.
 message-formats:
-  help-message: "<gradient:#5e4fa2:#f79459>Cohere Plugin Help</gradient>\n/cohere help - Shows this message."
+  help-message: "<gradient:#F8EF00:#FDFF87:#F8A300>Cohere Plugin Help</gradient>\n<gradient:#0D85AA:#6D7CE6:#A279B9>/cohere help - Shows this message.</gradient>"
   reload-message: "<green>Cohere plugin reloaded successfully.</green>"
 
 coherences:
@@ -26,3 +26,14 @@ coherences:
     enabled: true
     # Levels to decrease when sharing potions.
     level-decrease: 1
+  painshare:
+    enabled: true
+  deathdebuffs:
+    enabled: true
+    effects:
+      - type: "SLOWNESS"
+        duration: 20 # in seconds
+        amplifier: 1 # 0=I, 1=II, etc.
+      - type: "WEAKNESS"
+        duration: 20
+        amplifier: 1

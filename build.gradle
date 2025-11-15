@@ -1,10 +1,16 @@
 plugins {
     id 'java'
-    id 'com.github.johnrengelman.shadow' version '7.1.2'
+    id 'com.gradleup.shadow' version '9.2.2'
 }
 
 group = 'com.qclid'
-version = '0.3'
+version = '0.6'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
 
 repositories {
     mavenCentral()
@@ -13,10 +19,10 @@ repositories {
 }
 
 dependencies {
-    compileOnly 'org.spigotmc:spigot-api:1.19.4-R0.1-SNAPSHOT'
-    implementation 'net.kyori:adventure-text-minimessage:4.14.0'
-    implementation 'net.kyori:adventure-platform-bukkit:4.3.0'
-    compileOnly 'org.jetbrains:annotations:24.0.1'
+    compileOnly 'org.spigotmc:spigot-api:1.21-R0.1-SNAPSHOT'
+    implementation 'net.kyori:adventure-text-minimessage:4.17.0'
+    implementation 'net.kyori:adventure-platform-bukkit:4.3.2'
+    compileOnly 'org.jetbrains:annotations:24.1.0'
 }
 
 shadowJar {

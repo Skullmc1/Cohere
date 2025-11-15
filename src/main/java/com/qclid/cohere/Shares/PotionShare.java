@@ -1,6 +1,7 @@
 package com.qclid.cohere.Shares;
 
 import com.qclid.cohere.Cohere;
+import com.qclid.cohere.Modules.Team.Teams;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -30,6 +31,7 @@ public class PotionShare {
             return;
         }
 
+        Teams teams = plugin.getTeams();
         int levelDecrease = plugin
             .getConfig()
             .getInt("coherences.potionshare.level-decrease", 1);
@@ -50,6 +52,13 @@ public class PotionShare {
                 if (isEffectShared(playerA, effectA.getType())) continue;
 
                 for (Player playerB : coherentPlayers) {
+                    if (
+                        !teams.areInSameTeam(playerA, playerB) ||
+                        !teams.canSharePotions(playerA)
+                    ) {
+                        continue;
+                    }
+
                     PotionEffect effectB = playerB.getPotionEffect(
                         effectA.getType()
                     );

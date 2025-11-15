@@ -1,0 +1,26 @@
+# Master toggle for the team feature. If false, all players are considered to be in one big team.
+enabled: true
+
+# Section for defining teams.
+teams:
+  # The default team for players who are not in any other team.
+  default:
+    # Potion sharing is disabled by default for this team.
+    allow-potion-sharing: false
+    # Pain sharing is disabled by default for this team.
+    allow-pain-sharing: false
+    # Death debuffs are disabled by default for this team.
+    allow-death-debuffs: false
+    # Visual effect particle for this team.
+    particle-effect: "VAULT_CONNECTION"
+    # List of players in this team (usually empty as it's a fallback).
+    players: []
+
+  # Example of a created team.
+  # team-alpha:
+  #   allow-potion-sharing: true
+  #   allow-pain-sharing: true
+  #   allow-death-debuffs: true
+  #   particle-effect: "HEART"
+  #   players:
+  #     - "some-player-uuid"
