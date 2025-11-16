@@ -5,6 +5,8 @@ enabled: true
 teams:
   # The default team for players who are not in any other team.
   default:
+    # The leader of the team, who has management permissions.
+    leader: ""
     # Potion sharing is disabled by default for this team.
     allow-potion-sharing: false
     # Pain sharing is disabled by default for this team.
@@ -18,9 +20,11 @@ teams:
 
   # Example of a created team.
   # team-alpha:
+  #   leader: "some-leader-uuid"
   #   allow-potion-sharing: true
   #   allow-pain-sharing: true
   #   allow-death-debuffs: true
   #   particle-effect: "HEART"
   #   players:
   #     - "some-player-uuid"
+  #     - "some-leader-uuid"

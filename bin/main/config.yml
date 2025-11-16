@@ -12,6 +12,11 @@ message-formats:
   help-message: "<gradient:#F8EF00:#FDFF87:#F8A300>Cohere Plugin Help</gradient>\n<gradient:#0D85AA:#6D7CE6:#A279B9>/cohere help - Shows this message.</gradient>"
   reload-message: "<green>Cohere plugin reloaded successfully.</green>"
 
+permission-nodes:
+  # If true, players will need specific permission nodes to use team commands (e.g., cohere.team.create).
+  # If false, team creation is open to all, and management commands are leader-only.
+  enabled: false
+
 coherences:
   xpshare:
     enabled: true

@@ -26,6 +26,13 @@ public class CohereCommand implements CommandExecutor {
         @NotNull String label,
         @NotNull String[] args
     ) {
+        if (label.equalsIgnoreCase("team")) {
+            String[] newArgs = new String[args.length + 1];
+            newArgs[0] = "team";
+            System.arraycopy(args, 0, newArgs, 1, args.length);
+            args = newArgs;
+        }
+
         if (args.length > 0) {
             if (args[0].equalsIgnoreCase("reload")) {
                 if (sender.hasPermission("cohere.reload")) {
@@ -46,19 +53,7 @@ public class CohereCommand implements CommandExecutor {
                 }
                 return true;
             } else if (args[0].equalsIgnoreCase("team")) {
-                if (sender.hasPermission("cohere.team")) {
-                    teamCommands.handleCommand(sender, args);
-                } else {
-                    plugin
-                        .adventure()
-                        .sender(sender)
-                        .sendMessage(
-                            Component.text(
-                                "You do not have permission to do that.",
-                                NamedTextColor.RED
-                            )
-                        );
-                }
+                teamCommands.handleCommand(sender, args);
                 return true;
             }
         }

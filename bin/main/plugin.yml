@@ -1,5 +1,5 @@
 name: Cohere
-version: "0.6"
+version: "0.7"
 main: com.qclid.cohere.Cohere
 api-version: "1.21"
 prefix: Cohere
@@ -10,7 +10,7 @@ commands:
   cohere:
     description: Main command for the Cohere plugin.
     usage: /<command> [help|reload]
-    aliases: [ch]
+    aliases: [ch, team]
 permissions:
   cohere.reload:
     description: Allows reloading the plugin's configuration.

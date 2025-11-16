@@ -3,6 +3,9 @@ package com.qclid.cohere.Modules.Team;
 import com.qclid.cohere.Utility.MinimessageFormatter;
 import com.qclid.cohere.Utility.SmallFont;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.event.ClickEvent;
+import net.kyori.adventure.text.format.NamedTextColor;
+import net.kyori.adventure.text.format.TextDecoration;
 
 public class TeamCommandMessages {
 
@@ -137,6 +140,153 @@ public class TeamCommandMessages {
             TEAM_PREFIX +
                 "<gradient:#EF6079:#D74C6E>" +
                 SmallFont.toSmallFont(message) +
+                "</gradient>"
+        );
+    }
+
+    public static Component getPlayerLeftTeamMessage(
+        String playerName,
+        String teamName
+    ) {
+        return MinimessageFormatter.format(
+            TEAM_PREFIX +
+                "<gray>" +
+                SmallFont.toSmallFont("Player '") +
+                SmallFont.toSmallFont(playerName) +
+                SmallFont.toSmallFont("' has left team '") +
+                SmallFont.toSmallFont(teamName) +
+                "'.</gray>"
+        );
+    }
+
+    public static Component getLeaderCannotLeaveError() {
+        return MinimessageFormatter.format(
+            TEAM_PREFIX +
+                "<gradient:#EF6079:#D74C6E>" +
+                SmallFont.toSmallFont(
+                    "Team leaders must transfer ownership or disband the team before leaving."
+                ) +
+                "</gradient>"
+        );
+    }
+
+    public static Component getOwnershipTransferredMessage(
+        String newLeaderName
+    ) {
+        return MinimessageFormatter.format(
+            TEAM_PREFIX +
+                "<gray>" +
+                SmallFont.toSmallFont(
+                    "You have transferred team ownership to '"
+                ) +
+                SmallFont.toSmallFont(newLeaderName) +
+                "'.</gray>"
+        );
+    }
+
+    public static Component getInviteSentMessage(String playerName) {
+        return MinimessageFormatter.format(
+            TEAM_PREFIX +
+                "<gray>" +
+                SmallFont.toSmallFont("Invite sent to '") +
+                SmallFont.toSmallFont(playerName) +
+                "'.</gray>"
+        );
+    }
+
+    public static Component getInviteReceivedMessage(
+        String teamName,
+        String leaderName
+    ) {
+        return MinimessageFormatter.format(
+            TEAM_PREFIX +
+                "<gray>" +
+                SmallFont.toSmallFont("You have been invited to join team '") +
+                SmallFont.toSmallFont(teamName) +
+                SmallFont.toSmallFont("' by '") +
+                SmallFont.toSmallFont(leaderName) +
+                "'.</gray>\n" +
+                "<gray>" +
+                SmallFont.toSmallFont("Type '/team accept' or '/team deny'.") +
+                "</gray>"
+        );
+    }
+
+    public static Component getInviteDeniedMessage(String playerName) {
+        return MinimessageFormatter.format(
+            TEAM_PREFIX +
+                "<gray>'" +
+                SmallFont.toSmallFont(playerName) +
+                SmallFont.toSmallFont("' has denied your team invite.") +
+                "</gray>"
+        );
+    }
+
+    public static Component getNoPendingInviteError() {
+        return MinimessageFormatter.format(
+            TEAM_PREFIX +
+                "<gradient:#EF6079:#D74C6E>" +
+                SmallFont.toSmallFont("You have no pending invites.") +
+                "</gradient>"
+        );
+    }
+
+    public static Component getInviteAcceptedMessage(String teamName) {
+        return MinimessageFormatter.format(
+            TEAM_PREFIX +
+                "<gray>" +
+                SmallFont.toSmallFont("You have joined team '") +
+                SmallFont.toSmallFont(teamName) +
+                "'.</gray>"
+        );
+    }
+
+    public static Component getPlayerJoinedTeamMessage(String playerName) {
+        return MinimessageFormatter.format(
+            TEAM_PREFIX +
+                "<gray>'" +
+                SmallFont.toSmallFont(playerName) +
+                SmallFont.toSmallFont("' has joined your team.") +
+                "</gray>"
+        );
+    }
+
+    public static Component getOwnershipReceivedMessage(String oldLeaderName) {
+        return MinimessageFormatter.format(
+            TEAM_PREFIX +
+                "<gray>" +
+                SmallFont.toSmallFont(
+                    "You are now the leader of the team, transferred from '"
+                ) +
+                SmallFont.toSmallFont(oldLeaderName) +
+                "'.</gray>"
+        );
+    }
+
+    public static Component getInvalidParticleIdError() {
+        return MinimessageFormatter.format(
+            TEAM_PREFIX +
+                "<gradient:#EF6079:#D74C6E>" +
+                SmallFont.toSmallFont("Enter a valid particle id, see ") +
+                "<hover:show_text:'<aqua>Click to open link'><click:open_url:'https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Particle.html'>" +
+                SmallFont.toSmallFont("here") +
+                "</click></hover>" +
+                SmallFont.toSmallFont(".") +
+                "</gradient>"
+        );
+    }
+
+    public static Component getParticleNeedsDataError() {
+        return MinimessageFormatter.format(
+            TEAM_PREFIX +
+                "<gradient:#EF6079:#D74C6E>" +
+                SmallFont.toSmallFont(
+                    "You can't use that because it needs extra data, pick something else from "
+                ) +
+                "<hover:show_text:'<aqua>Click to open link'><click:open_url:'https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Particle.html'>" +
+                SmallFont.toSmallFont("here") +
+                "</click></hover>" +
+                SmallFont.toSmallFont(".") +
                 "</gradient>"
         );
     }

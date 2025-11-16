@@ -102,4 +102,16 @@ public class Teams {
             "CRIT"
         );
     }
+
+    public String getTeamLeader(String teamName) {
+        return teamsConfig.getString("teams." + teamName + ".leader", "");
+    }
+
+    public boolean isTeamLeader(Player player, String teamName) {
+        String leaderUUID = getTeamLeader(teamName);
+        if (leaderUUID == null || leaderUUID.isEmpty()) {
+            return false;
+        }
+        return player.getUniqueId().toString().equals(leaderUUID);
+    }
 }

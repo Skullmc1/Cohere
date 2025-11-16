@@ -5,6 +5,7 @@ import com.qclid.cohere.Modules.CohereTabCompleter;
 import com.qclid.cohere.Modules.CoherenceManager;
 import com.qclid.cohere.Modules.DevLog;
 import com.qclid.cohere.Modules.GeneralMessages;
+import com.qclid.cohere.Modules.Team.InviteManager;
 import com.qclid.cohere.Modules.Team.TeamCommands;
 import com.qclid.cohere.Modules.Team.Teams;
 import com.qclid.cohere.Modules.WorldManager;
@@ -13,6 +14,8 @@ import com.qclid.cohere.Shares.PainShare;
 import com.qclid.cohere.Shares.PotionShare;
 import com.qclid.cohere.Shares.XPShare;
 import com.qclid.cohere.Utility.CoherenceTask;
+import com.qclid.cohere.Utility.CommandListener;
+import com.qclid.cohere.Utility.InviteReminderTask;
 import com.qclid.cohere.Utility.PlayerListener;
 import com.qclid.cohere.Utility.VisualEffect;
 import net.kyori.adventure.platform.bukkit.BukkitAudiences;
@@ -30,6 +33,7 @@ public final class Cohere extends JavaPlugin {
     private VisualEffect visualEffect;
     private Teams teams;
     private TeamCommands teamCommands;
+    private InviteManager inviteManager;
 
     public @NotNull BukkitAudiences adventure() {
         if (this.adventure == null) {
@@ -65,7 +69,10 @@ public final class Cohere extends JavaPlugin {
         this.teams = new Teams(this);
         getLogger().info("Teams initialized.");
 
-        this.teamCommands = new TeamCommands(this, teams);
+        this.inviteManager = new InviteManager(this);
+        getLogger().info("InviteManager initialized.");
+
+        this.teamCommands = new TeamCommands(this, teams, inviteManager);
         getLogger().info("TeamCommands initialized.");
 
         this.visualEffect = new VisualEffect(this.coherenceManager, this.teams);
@@ -85,12 +92,25 @@ public final class Cohere extends JavaPlugin {
         getServer()
             .getPluginManager()
             .registerEvents(new DeathDebuffs(this), this);
+
         getLogger().info("DeathDebuffs listener registered.");
 
         getServer()
             .getPluginManager()
+            .registerEvents(new CommandListener(), this);
+
+        getLogger().info("CommandListener registered.");
+
+        getServer()
+            .getPluginManager()
             .registerEvents(
-                new PlayerListener(this.coherenceManager, this.potionShare),
+                new PlayerListener(
+                    this,
+                    this.coherenceManager,
+                    this.potionShare,
+                    this.inviteManager,
+                    this.teams
+                ),
                 this
             );
         getLogger().info("PlayerListener registered.");
@@ -105,6 +125,13 @@ public final class Cohere extends JavaPlugin {
         getCommand("cohere").setExecutor(new CohereCommand(this, teamCommands));
         getCommand("cohere").setTabCompleter(new CohereTabCompleter());
         getLogger().info("CohereCommand executor and tab completer set.");
+
+        new InviteReminderTask(this, inviteManager, teams).runTaskTimer(
+            this,
+            18000L,
+            18000L
+        );
+        getLogger().info("InviteReminderTask scheduled.");
 
         getLogger().info("Cohere plugin enabled successfully.");
     }
@@ -145,5 +172,9 @@ public final class Cohere extends JavaPlugin {
 
     public Teams getTeams() {
         return teams;
+    }
+
+    public InviteManager getInviteManager() {
+        return inviteManager;
     }
 }

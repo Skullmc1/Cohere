@@ -18,9 +18,13 @@ public class CohereTabCompleter implements TabCompleter {
         "create",
         "disband",
         "rename",
-        "add",
-        "remove",
-        "particle"
+        "invite",
+        "kick",
+        "particle",
+        "leave",
+        "transferownership",
+        "accept",
+        "deny"
     );
 
     @Override
@@ -55,8 +59,8 @@ public class CohereTabCompleter implements TabCompleter {
         } else if (
             args.length == 3 &&
             args[0].equalsIgnoreCase("team") &&
-            (args[1].equalsIgnoreCase("add") ||
-                args[1].equalsIgnoreCase("remove"))
+            (args[1].equalsIgnoreCase("invite") ||
+                args[1].equalsIgnoreCase("kick"))
         ) {
             return Bukkit.getOnlinePlayers()
                 .stream()
