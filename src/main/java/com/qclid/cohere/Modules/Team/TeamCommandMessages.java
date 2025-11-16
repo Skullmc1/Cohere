@@ -103,34 +103,46 @@ public class TeamCommandMessages {
             SmallFont.toSmallFont("Team Commands Help") +
             "</gradient>\n" +
             "<gray>" +
+            SmallFont.toSmallFont("/team create <name> - Creates a new team.") +
+            "</gray>\n" +
+            "<gray>" +
             SmallFont.toSmallFont(
-                "/ch team create <name> - Creates a new team."
+                "/team disband - Disbands your current team."
             ) +
             "</gray>\n" +
             "<gray>" +
             SmallFont.toSmallFont(
-                "/ch team disband - Disbands your current team."
+                "/team rename <newname> - Renames your team."
             ) +
             "</gray>\n" +
             "<gray>" +
             SmallFont.toSmallFont(
-                "/ch team rename <newname> - Renames your team."
+                "/team invite <player> - Invites a player to your team."
             ) +
             "</gray>\n" +
             "<gray>" +
             SmallFont.toSmallFont(
-                "/ch team add <player> - Adds a player to your team."
+                "/team kick <player> - Kicks a player from your team."
             ) +
             "</gray>\n" +
             "<gray>" +
             SmallFont.toSmallFont(
-                "/ch team remove <player> - Removes a player from your team."
+                "/team particle <id> - Sets your team's particle effect."
             ) +
             "</gray>\n" +
             "<gray>" +
+            SmallFont.toSmallFont("/team leave - Leaves your current team.") +
+            "</gray>\n" +
+            "<gray>" +
             SmallFont.toSmallFont(
-                "/ch team particle <id> - Sets your team's particle effect."
+                "/team transferownership <player> - Transfers ownership of your team."
             ) +
+            "</gray>\n" +
+            "<gray>" +
+            SmallFont.toSmallFont("/team accept - Accepts a team invite.") +
+            "</gray>\n" +
+            "<gray>" +
+            SmallFont.toSmallFont("/team deny - Denies a team invite.") +
             "</gray>";
         return MinimessageFormatter.format(helpMessage);
     }

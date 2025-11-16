@@ -30,7 +30,8 @@ public class CohereCommand implements CommandExecutor {
             String[] newArgs = new String[args.length + 1];
             newArgs[0] = "team";
             System.arraycopy(args, 0, newArgs, 1, args.length);
-            args = newArgs;
+            teamCommands.handleCommand(sender, newArgs);
+            return true;
         }
 
         if (args.length > 0) {

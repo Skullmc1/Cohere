@@ -198,6 +198,15 @@ public class TeamCommands {
                         );
                     return;
                 }
+                if (isLeader) {
+                    plugin
+                        .adventure()
+                        .sender(player)
+                        .sendMessage(
+                            TeamCommandMessages.getLeaderCannotLeaveError()
+                        );
+                    return;
+                }
                 leaveTeam(player);
                 break;
             case "transferownership":
@@ -226,9 +235,27 @@ public class TeamCommands {
                 transferOwnership(player, args);
                 break;
             case "accept":
+                if (!inviteManager.hasInvite(player)) {
+                    plugin
+                        .adventure()
+                        .sender(player)
+                        .sendMessage(
+                            TeamCommandMessages.getNoPendingInviteError()
+                        );
+                    return;
+                }
                 acceptInvite(player);
                 break;
             case "deny":
+                if (!inviteManager.hasInvite(player)) {
+                    plugin
+                        .adventure()
+                        .sender(player)
+                        .sendMessage(
+                            TeamCommandMessages.getNoPendingInviteError()
+                        );
+                    return;
+                }
                 denyInvite(player);
                 break;
             default:

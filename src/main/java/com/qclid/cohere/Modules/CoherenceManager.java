@@ -18,6 +18,9 @@ public class CoherenceManager {
     }
 
     public void updateCoherence() {
+        if (plugin.getConfig().getBoolean("coherences.server-wide", false)) {
+            return;
+        }
         double minDistance = plugin
             .getConfig()
             .getDouble("general-settings.min-distance", 10.0);
@@ -104,6 +107,14 @@ public class CoherenceManager {
     }
 
     public Set<Player> getCoherentPlayers(Player player) {
+        if (plugin.getConfig().getBoolean("coherences.server-wide", false)) {
+            return plugin
+                .getServer()
+                .getOnlinePlayers()
+                .stream()
+                .filter(p -> !p.equals(player))
+                .collect(Collectors.toSet());
+        }
         return coherenceMap.getOrDefault(player, new HashSet<>());
     }
 

@@ -34,6 +34,27 @@ public class CohereTabCompleter implements TabCompleter {
         @NotNull String alias,
         @NotNull String[] args
     ) {
+        if (alias.equalsIgnoreCase("team")) {
+            if (args.length == 1) {
+                return TEAM_SUBCOMMANDS.stream()
+                    .filter(s -> s.startsWith(args[0].toLowerCase()))
+                    .collect(Collectors.toList());
+            } else if (
+                args.length == 2 &&
+                (args[0].equalsIgnoreCase("invite") ||
+                    args[0].equalsIgnoreCase("kick") ||
+                    args[0].equalsIgnoreCase("transferownership"))
+            ) {
+                return Bukkit.getOnlinePlayers()
+                    .stream()
+                    .map(Player::getName)
+                    .filter(name ->
+                        name.toLowerCase().startsWith(args[1].toLowerCase())
+                    )
+                    .collect(Collectors.toList());
+            }
+        }
+
         if (args.length == 1) {
             List<String> completions = new ArrayList<>();
             if ("help".startsWith(args[0].toLowerCase())) {
@@ -45,10 +66,7 @@ public class CohereTabCompleter implements TabCompleter {
             ) {
                 completions.add("reload");
             }
-            if (
-                "team".startsWith(args[0].toLowerCase()) &&
-                sender.hasPermission("cohere.team")
-            ) {
+            if ("team".startsWith(args[0].toLowerCase())) {
                 completions.add("team");
             }
             return completions;
@@ -60,7 +78,8 @@ public class CohereTabCompleter implements TabCompleter {
             args.length == 3 &&
             args[0].equalsIgnoreCase("team") &&
             (args[1].equalsIgnoreCase("invite") ||
-                args[1].equalsIgnoreCase("kick"))
+                args[1].equalsIgnoreCase("kick") ||
+                args[1].equalsIgnoreCase("transferownership"))
         ) {
             return Bukkit.getOnlinePlayers()
                 .stream()

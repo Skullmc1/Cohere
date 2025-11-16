@@ -18,6 +18,8 @@ permission-nodes:
   enabled: false
 
 coherences:
+  # if this is set to true, min-distance is ignored. If false, min-distance is used.
+  server-wide: false
   xpshare:
     enabled: true
     # Type of sharing: 'add' or 'subtract'
@@ -37,8 +39,8 @@ coherences:
     enabled: true
     effects:
       - type: "SLOWNESS"
-        duration: 20 # in seconds
+        duration: 10 # in seconds
         amplifier: 1 # 0=I, 1=II, etc.
       - type: "WEAKNESS"
-        duration: 20
+        duration: 10
         amplifier: 1
