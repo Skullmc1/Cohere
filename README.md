@@ -1,94 +1,48 @@
-# ✨ Cohere ✨
+# Cohere Plugin
 
-![Plugin Version](https://img.shields.io/badge/Version-1.0.0-blue.svg)
-![Supported Spigot Versions](https://img.shields.io/badge/Spigot-1.19+-orange.svg)
-![License](https://img.shields.io/badge/License-MIT-green.svg)
+Cohere is a Spigot plugin that links players together, allowing them to share XP, effects, and custom abilities. When players team up, their combined strength grows, and they can work together to overcome challenges.
 
----
+## Features
 
-## 📖 Overview
+*   **Teams:** Players can create and join teams, allowing them to collaborate and share abilities.
+*   **Coherence:** When players are close to each other, they enter a state of "coherence," which enhances their shared abilities.
+*   **Pain Share:** When a player in a team takes damage, a portion of that damage is shared with other team members.
+*   **XP Share:** When a player in a team gains XP, a portion of that XP is shared with other team members.
+*   **Potion Share:** When a player in a team drinks a potion, the effects are shared with other team members.
+*   **Death Debuffs:** When a player in a team dies, the other team members receive a debuff.
 
-**Cohere** is a lightweight and highly configurable Spigot plugin designed to reward players for sticking together. It creates a 'coherence' effect, allowing nearby players to share perks like XP and potion effects, fostering teamwork and collaboration on your server.
+## Commands
 
-<br>
+*   `/cohere` or `/ch`: The main command for the Cohere plugin.
+    *   `help`: Displays the help message.
+    *   `reload`: Reloads the plugin's configuration.
+*   `/team`: The main command for team-related actions.
+    *   `create <name>`: Creates a new team.
+    *   `disband`: Disbands your current team.
+    *   `rename <newname>`: Renames your team.
+    *   `invite <player>`: Invites a player to your team.
+    *   `kick <player>`: Kicks a player from your team.
+    *   `particle <id>`: Sets your team's particle effect.
+    *   `leave`: Leaves your current team.
+    *   `transferownership <player>`: Transfers ownership of your team to another player.
+    *   `accept`: Accepts a team invite.
+    *   `deny`: Denies a team invite.
 
-## 🚀 Features
+## Permissions
 
-*   **🌐 Proximity-Based Coherence:** Automatically detects nearby players and enables sharing. The minimum distance required is fully configurable.
+*   `cohere.reload`: Allows reloading the plugin's configuration. (Default: op)
 
-*   **✨ Advanced XP Sharing:**
-    *   **Add Mode:** Grants bonus XP to nearby players without taking from the original earner.
-    *   **Subtract Mode:** Divides the earned XP evenly among all players in coherence.
-    *   *Fully configurable, with options to toggle the feature and set the sharing percentage.*
+## Configuration
 
-*   **🧪 Dynamic Potion Sharing:**
-    *   Shares active potion effects with nearby players.
-    *   Configurable level decrease for shared effects (e.g., a Level II effect is shared as Level I).
-    *   Shared effects have a temporary, refreshing duration.
-    *   Intelligently handles effect stacking (prioritizing stronger effects) and prevents messy feedback loops.
+The `config.yml` file contains the following options:
 
-*   **🎨 Unique Themed Messaging:**
-    *   A beautiful, customizable prefix with gradient colors.
-    *   A unique "small-font" style for chat messages.
-    *   Automatic, stylized messages for entering/leaving coherence, sharing XP, and more.
+*   `coherences.painshare.enabled`: Enables or disables the pain share feature.
+*   `coherences.potionshare.enabled`: Enables or disables the potion share feature.
+*   `coherences.xpshare.enabled`: Enables or disables the XP share feature.
+*   `coherences.deathdebuffs.enabled`: Enables or disables the death debuffs feature.
+*   `permission-nodes.enabled`: Enables or disables permission checks for team commands.
+*   `disabled-worlds`: A list of worlds where the plugin's features are disabled.
 
-*   **⚙️ Highly Configurable:**
-    *   Enable or disable any sharing feature with a simple toggle.
-    *   Disable all plugin effects in specific worlds (e.g., your server lobby).
-    *   Toggle detailed developer logs for easy debugging.
+The `Teams.yml` file stores all the team data.
 
-<br>
-
-## 📦 Installation
-
-1.  Download the latest `Cohere.jar` from the releases page.
-2.  Place the `.jar` file into your server's `plugins/` folder.
-3.  Restart or reload your server. The default configuration file will be generated automatically.
-
-<br>
-
-## 🛠️ Commands & Permissions
-
-| Command          | Description                             | Permission        |
-| :--------------- | :-------------------------------------- | :---------------- |
-| `/cohere help`   | Displays the plugin's help message.     | `(none)`          |
-| `/cohere reload` | Reloads the `config.yml` file.          | `cohere.reload`   |
-
-<br>
-
-## ⚙️ Configuration (`config.yml`)
-
-The `config.yml` file is automatically generated and allows for deep customization of every feature.
-
-```yaml
-# General settings for the plugin's core functionality
-general-settings:
-  min-distance: 10
-  disabled-worlds:
-    - "lobby"
-  dev-logs: true # Master toggle for all dev logs
-
-# Customize the messages sent by the plugin
-message-formats:
-  help-message: "<gradient:#5e4fa2:#f79459>Cohere Plugin Help</gradient>\n/cohere help - Shows this message."
-  reload-message: "<green>Cohere plugin reloaded successfully.</green>"
-
-# Configure the different sharing modules
-coherences:
-  # --- XP Sharing ---
-  xpshare:
-    enabled: true
-    # Type of sharing: 'add' or 'subtract'
-    # 'add': Clones a percentage of the XP to nearby players without reducing the original amount.
-    # 'subtract': Divides the XP evenly among nearby players.
-    type: "add"
-    # Percentage of XP to be shared with nearby players (only for 'add' type).
-    shared-percentage: 50
-  
-  # --- Potion Effect Sharing ---
-  potionshare:
-    enabled: true
-    # The amount to decrease the potion effect level by when sharing.
-    # e.g., A value of 1 shares Strength II as Strength I.
-    level-decrease: 1
-```
+The `invites.yml` file stores all the pending team invites.
